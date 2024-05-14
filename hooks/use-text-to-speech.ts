@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export function useTextToSpeech(text: string, lang?: string) {
     const [speaking, setSpeaking] = useState(false);
+    const [canSpeak, setCanSpeak] = useState(!!window?.speechSynthesis);
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null);
 
     const speak = () => {
@@ -34,6 +35,8 @@ export function useTextToSpeech(text: string, lang?: string) {
             utterance.addEventListener('end', () => {
                 setSpeaking(false);
             });
+
+            setCanSpeak(() => instance.getVoices().find((voice) => voice.lang.search(lang || 'en') > -1) !== undefined);
         } else {
             console.error('Speech synthesis not supported');
         }
@@ -53,5 +56,5 @@ export function useTextToSpeech(text: string, lang?: string) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [text, lang]);
 
-    return { speak, cancel, speaking }
+    return { speak, cancel, speaking, canSpeak }
 }

@@ -28,7 +28,7 @@ export const TextTranslator = () => {
     const [_, copyToClipboard] = useCopyToClipboard();
     const [hasCopiedText, setHasCopiedText] = useState(false);
 
-    const { speak, cancel, speaking } = useTextToSpeech(translatedText, toLanguage);
+    const { speak, cancel, speaking, canSpeak } = useTextToSpeech(translatedText, toLanguage);
 
     useEffect(() => {
         const onTranslate = async () => {
@@ -125,7 +125,7 @@ export const TextTranslator = () => {
                         </button>
                     </div>
                 }
-                {translatedText &&
+                {translatedText && canSpeak &&
                     <div className="absolute left-3 bottom-2">
                         <button onClick={() => {
                             if (speaking) {
