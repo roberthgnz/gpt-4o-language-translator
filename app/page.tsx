@@ -21,7 +21,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Globe, SpellCheck } from "lucide-react";
 
-import { translateText } from './actions';
 
 export default function Home() {
   const [originalText, setOriginalText] = useState("Why is the sky blue?");
@@ -30,6 +29,24 @@ export default function Home() {
 
   const [fromLanguage, setFromLanguage] = useState("");
   const [toLanguage, setToLanguage] = useState("");
+
+  const onTranslate = async () => {
+    const response = await fetch('/api/translate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        prompt: originalText,
+        from: fromLanguage,
+        to: toLanguage,
+      }),
+    });
+
+    const { text } = await response.json();
+    
+    setTranslatedText(text);
+  }
 
   return (
     <div className="container mx-auto p-4">
@@ -77,10 +94,7 @@ export default function Home() {
             </label>
             <Textarea value={originalText} onChange={e => setOriginalText(e.target.value)} placeholder="Enter text here" />
           </div>
-          <Button className="w-full mt-4" disabled={!originalText} onClick={async () => {
-            const { text } = await translateText(originalText, fromLanguage, toLanguage);
-            setTranslatedText(text);
-          }}>
+          <Button className="w-full mt-4" disabled={!originalText} onClick={onTranslate}>
             <SpellCheck className="mr-2 h-4 w-4" />
             Translate
           </Button>
