@@ -150,7 +150,9 @@ The gpt-4o-language-translator project is a language translation application tha
 Initialize the environment variables in the `.env` file:
 
 ```sh
-OPENAI_API_KEY=your_openai_api_key
+OPENAI_API_KEY=
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
 ```
 
 
