@@ -9,9 +9,8 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-import { useDebounce } from "@uidotdev/usehooks";
-import { LoaderCircleIcon } from "lucide-react";
-
+import { useDebounce, useCopyToClipboard } from "@uidotdev/usehooks";
+import { CheckIcon, CopyIcon, LoaderCircleIcon, XIcon } from "lucide-react";
 
 export const TextTranslator = () => {
     const [originalText, setOriginalText] = useState("");
@@ -22,6 +21,9 @@ export const TextTranslator = () => {
 
     const [translating, setTranslating] = useState(false);
     const debouncedText = useDebounce(originalText, 300);
+
+    const [_, copyToClipboard] = useCopyToClipboard();
+    const [hasCopiedText, setHasCopiedText] = useState(false);
 
     useEffect(() => {
         const onTranslate = async () => {
@@ -54,6 +56,11 @@ export const TextTranslator = () => {
         onTranslate();
     }, [debouncedText, fromLanguage, toLanguage]);
 
+    const onCopyText = async () => {
+        setHasCopiedText(true);
+        await copyToClipboard(translatedText)
+        setTimeout(() => setHasCopiedText(false), 500);
+    }
 
     return <div className="flex flex-col gap-2">
         <div className="flex gap-2">
@@ -89,12 +96,26 @@ export const TextTranslator = () => {
             </div>
         </div>
         <div className="grid grid-cols-2 gap-2">
-            <Textarea value={originalText} onChange={e => setOriginalText(e.target.value)} placeholder="Enter text here" />
             <div className="relative">
-                <Textarea readOnly placeholder={translating ? undefined : 'Translation'} value={translatedText} className="bg-gray-100" />
+                <Textarea rows={6} value={originalText} onChange={e => setOriginalText(e.target.value)} placeholder="Enter text here" />
+                {originalText && (<div className="absolute right-3 top-2">
+                    <button onClick={() => setOriginalText("")} className="text-sm text-gray-700 dark:text-gray-300">
+                        <XIcon className="size-3" />
+                    </button>
+                </div>)}
+            </div>
+            <div className="relative">
+                <Textarea rows={6} readOnly placeholder={translating ? undefined : 'Translation'} value={translatedText} className="bg-gray-100" />
                 <div className="absolute left-3 top-2 flex items-center justify-center">
                     <LoaderCircleIcon className={`size-4 animate-spin ${translating ? 'block' : 'hidden'}`} />
                 </div>
+                {translatedText &&
+                    <div className="absolute right-3 top-2">
+                        <button onClick={onCopyText} className="text-sm text-gray-700 dark:text-gray-300">
+                            {hasCopiedText ? <CheckIcon className="size-3" /> : <CopyIcon className="size-3" />}
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     </div>
