@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <Card className="w-full max-w-xl mx-auto">
+      <Card className="w-full max-w-2xl mx-auto">
         <CardHeader className="flex items-center">
           <Globe className="mr-2 h-6 w-6" />
           <CardTitle>Language Translator</CardTitle>
@@ -40,6 +40,9 @@ export default function Home() {
           <TranslatorTypeTabs defaultValue={activeTab} tabsList={tabsList}>
             <TabsContent value="text">
               <TextTranslator />
+            </TabsContent>
+            <TabsContent value="image">
+              Work in progress...
             </TabsContent>
           </TranslatorTypeTabs>
         </CardContent>
