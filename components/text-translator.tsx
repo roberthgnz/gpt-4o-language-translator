@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDebounce, useCopyToClipboard } from "@uidotdev/usehooks";
+import { CheckIcon, CopyIcon, LoaderCircleIcon, PlayCircleIcon, StopCircle, XIcon } from "lucide-react";
 
 import {
     Select,
@@ -9,8 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-import { useDebounce, useCopyToClipboard } from "@uidotdev/usehooks";
-import { CheckIcon, CopyIcon, LoaderCircleIcon, XIcon } from "lucide-react";
+import { useTextToSpeech } from "@/hooks/use-text-to-speech";
 
 export const TextTranslator = () => {
     const [originalText, setOriginalText] = useState("");
@@ -24,6 +25,8 @@ export const TextTranslator = () => {
 
     const [_, copyToClipboard] = useCopyToClipboard();
     const [hasCopiedText, setHasCopiedText] = useState(false);
+
+    const { speak, cancel, speaking } = useTextToSpeech(translatedText, toLanguage);
 
     useEffect(() => {
         const onTranslate = async () => {
@@ -113,6 +116,19 @@ export const TextTranslator = () => {
                     <div className="absolute right-3 top-2">
                         <button onClick={onCopyText} className="text-sm text-gray-700 dark:text-gray-300">
                             {hasCopiedText ? <CheckIcon className="size-3" /> : <CopyIcon className="size-3" />}
+                        </button>
+                    </div>
+                }
+                {translatedText &&
+                    <div className="absolute left-3 bottom-2">
+                        <button onClick={() => {
+                            if (speaking) {
+                                cancel();
+                            } else {
+                                speak();
+                            }
+                        }} className="text-sm text-gray-700 dark:text-gray-300">
+                            {speaking ? <StopCircle className="size-4" /> : <PlayCircleIcon className="size-4" />}
                         </button>
                     </div>
                 }
