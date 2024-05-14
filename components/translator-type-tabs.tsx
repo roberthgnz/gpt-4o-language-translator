@@ -10,7 +10,7 @@ interface TranslatorTypeTabsProps {
 }
 
 export const TranslatorTypeTabs = ({ defaultValue, tabsList = [], children }: TranslatorTypeTabsProps) => {
-    return <Tabs defaultValue={defaultValue}>
+    return <Tabs className="w-full max-w-2xl mx-auto space-y-4" defaultValue={defaultValue}>
         <TabsList>
             {
                 tabsList.map((tab, index) => {
