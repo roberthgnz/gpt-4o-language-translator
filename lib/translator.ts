@@ -4,7 +4,7 @@ import { openai } from '@ai-sdk/openai';
 export async function translateText(prompt: string, from: string, to: string) {
     const { text, finishReason, usage } = await generateText({
         model: openai('gpt-4o'),
-        system: `You are a Language Translator. Translate from ${from} to ${to}. Always just return the translation of the prompt.`,
+        system: `You are a Language Translator. Translate from "${from}" to "${to}". If from it's empty detect the source language. Always just return the translation of the prompt.`,
         maxTokens: 4096,
         temperature: 0,
         prompt,
