@@ -40,6 +40,8 @@ export function useTextToSpeech(text: string, lang?: string) {
 
         return () => {
             if (utterance) {
+                window.speechSynthesis.cancel();
+
                 utterance.removeEventListener('start', () => {
                     setSpeaking(true);
                 });
