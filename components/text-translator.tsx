@@ -13,12 +13,14 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { useTextToSpeech } from "@/hooks/use-text-to-speech";
 
+import languages from "@/lib/languages.json";
+
 export const TextTranslator = () => {
     const [originalText, setOriginalText] = useState("");
     const [translatedText, setTranslatedText] = useState("");
 
-    const [fromLanguage, setFromLanguage] = useState("");
-    const [toLanguage, setToLanguage] = useState("en");
+    const [fromLanguage, setFromLanguage] = useState("en");
+    const [toLanguage, setToLanguage] = useState("zh");
 
     const [translating, setTranslating] = useState(false);
     const debouncedText = useDebounce(originalText, 300);
@@ -76,9 +78,11 @@ export const TextTranslator = () => {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="en">English</SelectItem>
-                        <SelectItem value="es">Spanish</SelectItem>
-                        <SelectItem value="fr">French</SelectItem>
+                        {
+                            languages.map(({ lang, name }) => (
+                                <SelectItem key={lang} value={lang}>{name}</SelectItem>
+                            ))
+                        }
                     </SelectContent>
                 </Select>
             </div>
@@ -91,9 +95,11 @@ export const TextTranslator = () => {
                         <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="en">English</SelectItem>
-                        <SelectItem value="es">Spanish</SelectItem>
-                        <SelectItem value="fr">French</SelectItem>
+                        {
+                            languages.map(({ lang, name }) => (
+                                <SelectItem key={lang} value={lang}>{name}</SelectItem>
+                            ))
+                        }
                     </SelectContent>
                 </Select>
             </div>

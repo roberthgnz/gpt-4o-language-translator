@@ -1,0 +1,42 @@
+[
+  {
+    "lang": "en",
+    "name": "English"
+  },
+  {
+    "lang": "zh",
+    "name": "Chinese"
+  },
+  {
+    "lang": "hi",
+    "name": "Hindi"
+  },
+  {
+    "lang": "es",
+    "name": "Spanish"
+  },
+  {
+    "lang": "fr",
+    "name": "French"
+  },
+  {
+    "lang": "ar",
+    "name": "Arabic"
+  },
+  {
+    "lang": "bn",
+    "name": "Bengali"
+  },
+  {
+    "lang": "ru",
+    "name": "Russian"
+  },
+  {
+    "lang": "pt",
+    "name": "Portuguese"
+  },
+  {
+    "lang": "ur",
+    "name": "Urdu"
+  }
+]
