@@ -35,19 +35,13 @@
 > - [🚀 Getting Started](#-getting-started)
 >   - [⚙️ Installation](#️-installation)
 >   - [🤖 Running gpt-4o-language-translator](#-running-gpt-4o-language-translator)
->   - [🧪 Tests](#-tests)
-> - [🛠 Project Roadmap](#-project-roadmap)
 > - [🤝 Contributing](#-contributing)
-> - [📄 License](#-license)
-> - [👏 Acknowledgments](#-acknowledgments)
 
----
 
 ## 📍 Overview
 
-The gpt-4o-language-translator project is a language translation application that leverages AI models from OpenAI for seamless text translation tasks. The core functionalities include managing user input components like buttons, cards, inputs, selects, and text areas, enhancing UI interactivity and data handling. It provides a robust frontend architecture with reusable components styled using Tailwind CSS for consistent design. The project centralizes settings for themes, colors, and animations to ensure a cohesive user experience. Additionally, it includes utility functions for efficient styling across components and strict TypeScript settings for enhanced type safety. In essence, the project aims to streamline text translation tasks and provide a user-friendly interface for language communication.
+The gpt-4o-language-translator project is a language translation application that use the new AI model from OpenAI "gpt-4o".
 
----
 
 ## 📦 Features
 
@@ -65,7 +59,6 @@ The gpt-4o-language-translator project is a language translation application tha
 | 🚀 | **Scalability**   | Scalability supported through Next.js for server-rendered React applications. Utilizes React for dynamic UI updates. |
 
 
----
 
 ## 📂 Repository Structure
 
@@ -99,7 +92,6 @@ The gpt-4o-language-translator project is a language translation application tha
     └── tsconfig.json
 ```
 
----
 
 ## 🧩 Modules
 
@@ -153,9 +145,14 @@ The gpt-4o-language-translator project is a language translation application tha
 
 ***Requirements***
 
-Ensure you have the following dependencies installed on your system:
+### 📦 Prerequisites
 
-* **TypeScript**: `version x.y.z`
+Initialize the environment variables in the `.env` file:
+
+```sh
+OPENAI_API_KEY=your_openai_api_key
+```
+
 
 ### ⚙️ Installation
 
@@ -174,7 +171,7 @@ cd gpt-4o-language-translator
 3. Install the dependencies:
 
 ```sh
-npm install
+bun install
 ```
 
 ### 🤖 Running gpt-4o-language-translator
@@ -182,7 +179,7 @@ npm install
 Use the following command to run gpt-4o-language-translator:
 
 ```sh
-npm run dev
+bun run dev
 ```
 
 
