@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/96/external-readme-is-a-easy-to-build-a-developer-hub-that-adapts-to-the-user-logo-regular-tal-revivo.png" width="100" />
-</p>
+ ![gpt-4o-language-translator vercel app_](https://github.com/roberthgnz/gpt-4o-language-translator/assets/63687573/9787804b-2cbf-426c-8ad4-9dfe06151387)
 <p align="center">
     <h1 align="center">GPT-4O-LANGUAGE-TRANSLATOR</h1>
 </p>
