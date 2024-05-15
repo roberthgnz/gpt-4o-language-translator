@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export function useTextToSpeech(text: string, lang?: string) {
     const [speaking, setSpeaking] = useState(false);
-    const [canSpeak, setCanSpeak] = useState(!!window?.speechSynthesis);
+    const [canSpeak, setCanSpeak] = useState(true);
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null);
 
     const speak = () => {
